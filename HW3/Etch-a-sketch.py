@@ -14,6 +14,7 @@ BUTTON_1 = "P9_12"
 BUTTON_2 = "P9_25"
 BUTTON_3 = "P9_29"
 BUTTON_4 = "P9_41"
+BUTTON_CLR = "P8_10"
 
 LED_1 = "P9_14"
 LED_2 = "P9_26"
@@ -24,6 +25,7 @@ GPIO.setup(BUTTON_1, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(BUTTON_2, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(BUTTON_3, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(BUTTON_4, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(BUTTON_CLR, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 GPIO.setup(LED_1, GPIO.OUT)
 GPIO.setup(LED_2, GPIO.OUT)
@@ -34,6 +36,7 @@ GPIO.add_event_detect(BUTTON_1, GPIO.RISING)
 GPIO.add_event_detect(BUTTON_2, GPIO.RISING)
 GPIO.add_event_detect(BUTTON_3, GPIO.RISING)
 GPIO.add_event_detect(BUTTON_4, GPIO.RISING)
+GPIO.add_event_detect(BUTTON_CLR, GPIO.RISING)
 
 size = 8
 currentX = 0
@@ -78,4 +81,9 @@ while (True):
 			display.set_pixel(currentX, currentY, 1)
 			display.write_display()
 			sleep(0.2)
+	if GPIO.event_detected(BUTTON_CLR):
+		display.clear();
+		display.write_display()
+		sleep(0.2)
+			
 
